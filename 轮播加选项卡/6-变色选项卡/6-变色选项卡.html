@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>选项卡小作业</title>
+	<style type="text/css">
+		/*reset*/
+		body,ul,h1,h2,h3,p,input{
+			margin: 0;
+			padding: 0;
+		}
+		ul{
+			list-style-type: none;
+		}
+		a{
+			text-decoration: none;
+			color: #222;
+		}
+
+		.wrap{
+			width: 346px;
+			height:404px;
+			background-color: pink;
+			margin: 0 auto;
+			box-shadow:  2px 2px 5px 1px #ccc;
+			border: 2px solid skyblue;
+			overflow: hidden;
+		}
+		.wrap .title{
+			width: auto;
+			height: 50px;
+			display: flex;
+			justify-content: space-around;
+			background-color:pink;
+			border: 3px solid skyblue;
+
+		}
+		.wrap .title li{
+			width: 50px;
+			text-align: center;
+			height: 50px;
+			line-height: 50px;
+			background-color: skyblue;
+			color: blue;
+			cursor: pointer;
+		}
+		.wrap .title>.bright{
+			opacity: 0.6;
+		}
+		.wrap .con{
+			width: 346px;
+			height: 346px;
+		}
+		.wrap .content{
+			box-sizing: border-box;
+			width:16000px;
+			height: 346px;
+			text-align: center;
+			color: white;
+			overflow: hidden;
+			position: relative;
+			top: 0px;
+			left: 0;
+			transition: .5s;
+		}
+		.wrap .content>li{
+			float: left;
+			width:345px;
+			height: 348px;
+			background-color: #323;
+		}
+	</style>
+</head>
+<body>
+	<div class="wrap">
+		<ul class="title">
+			<!-- <li class="bright">选项0</li> -->
+		</ul>
+		<div class="con">
+			<ul class="content">
+				<!-- <li class="on">内容0</li> -->
+			</ul>
+		</div>
+		
+	</div>
+	<script type="text/javascript">
+		let title = document.querySelector(".wrap .title"),
+		// console.log(aulList1);/测试获取成功*/
+		    content = document.querySelector(".wrap .content");
+		data =[
+		{
+			title:"选项0",
+			content:"内容0"
+		},
+		{
+			title:"选项1",
+			content:"内容1"
+		},
+		{
+			title:"选项2",
+			content:"内容2"
+		},
+		{
+			title:"选项3",
+			content:"内容3"
+		},
+		{
+			title:"选项4",
+			content:"内容4"
+		},
+		{
+			title:"选项5",
+			content:"内容5"
+		},
+		{
+			title:"选项6",
+			content:"内容6"
+		}
+		]
+		let render = (data) => {
+			for(let i of data){
+				title.innerHTML += `<li>${i.title}</li>`
+				content.innerHTML += `<li>${i.content}</li>`
+			}
+		}
+		render(data);
+		let ali1 = title.querySelectorAll("li"),
+			ali2 = content.querySelectorAll("li");
+		 // console.log(ali2);
+		//  需求分析1： 点击选项卡变色
+		 	/*
+		 		取消上一个状态,
+				点亮当前。
+			*/
+			//  需求分析2： 点击选项卡内容切换
+			/*
+				隐藏当前显示内容，
+				显示当前选中对应项内容。
+			*/
+		let bnum = 0;//前一个点亮的选项卡序号
+		ali1[bnum].classList.add("bright")
+		 for(var i = 0,len = ali1.length; i < len; i++){
+		 	 ali2[i].style.backgroundColor = `#${Math.random().toString(16).slice(-6)}`
+		 	 ali1[i].onclick = ((j) => {
+		 	 		return function change(){
+		 	 			//点亮选中选项
+		 	 			ali1[bnum].classList.remove("bright")
+		 	 			ali1[j].classList.add("bright")
+		 	 			//改变内容
+		 	 			console.log(ali1[j].style.width);
+		 	 			content.style.left = -j*345 + 'px';
+		 	 			ali2[j].style.backgroundColor = `#${Math.random().toString(16).slice(-6)}`
+		 	 			bnum = j//更新点亮项序号
+		 	 		}
+		 	 })(i)
+		 }
+
+	</script>	
+</body>
+</html>

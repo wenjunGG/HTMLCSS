@@ -1,0 +1,67 @@
+
+ul li a div span{
+    margin: 0px;
+    padding: 0px;
+}
+
+body{
+    font: 12px/150% Arial,Verdana,"\5b8b\4f53";
+    color: #666;
+}
+
+.warp{
+    width: 900px;
+    height: 749px;
+    margin: 50px auto 0px;
+    background-color: bisque
+}
+
+.cut_btn{
+    height: 80px;
+    border-bottom: 1px solid #666;
+    background-color: aqua;
+    text-align: center;
+    /* position: relative; */
+}
+
+.cut_btn span{
+      /* position:absolute; */
+      line-height: 80px;
+      width: 296px;
+      display: inline-block; 
+      cursor: pointer;
+      background-color: aqua;
+      border-right: 1px solid coral;
+}
+
+.cut_btn .watermelon_span{
+    border-right:0px;
+}
+
+.cut_img{
+      position: relative; 
+}
+
+.cut_img div{
+    position: absolute; 
+    width: 900px;
+    height: 668px;
+    z-index: 1;
+}
+
+.cut_img .apple{
+    /* background-color: blueviolet; */
+    background-image: url('img/apple.jpg');
+    
+}
+
+.cut_img .Banana{
+    /* background-color: chartreuse; */
+    background-image: url('img/Banana.jpg');
+}
+
+.cut_img .watermelon{
+    /* background-color: coral; */
+    background-image: url('img/watermelon.jpg');
+}
+ 

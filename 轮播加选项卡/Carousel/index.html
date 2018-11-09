@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+      <title>Document</title>
+      <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+
+      <div class="warp">
+            <div class="cut_btn">
+                  <span>苹果</span>
+                  <span>香蕉</span>
+                  <span class="watermelon_span">西瓜</span>
+            </div>
+            <div class="cut_img">
+                  <div class="apple"></div>
+                  <div class="Banana"></div>
+                  <div class="watermelon"></div>
+            </div>
+      </div>
+</body>
+
+</html>
+
+<script type="text/javaScript">
+      var spanli=document.querySelectorAll(".cut_btn span");
+      var imgli=document.querySelectorAll(".cut_img div");
+
+      var spanliLength=spanli.length;
+
+     
+
+
+      for (let index = 0; index < spanliLength; index++) {
+
+            //1.
+            // (function(index){
+            //       spanli[index].onclick=function(){
+            //             SetOtherimgli();
+            //             imgli[index].style.zIndex=2;
+            //       }
+            // })(index);
+
+            //2. 
+            //  spanli[index].onclick=(function(){
+            //           function set(){
+            //             SetOtherimgli();
+            //             imgli[index].style.zIndex=2;
+            //           }
+            //           return set;
+            //  })(index)
+
+             //3. 
+             spanli[index].onclick=(function(index){
+                          function set(){
+                              SetOtherimg()(index);
+                          }
+                          return set;
+            })(index)
+      }
+
+     //针对1.2. 轮询实现 修改所有值
+      function SetOtherimgli(){
+            for (let index = 0; index < imgli.length; index++) {
+                  imgli[index].style.zIndex=1;
+            }
+      }
+
+     //针对3. 4.
+     function SetOtherimg(){
+            var obj={
+                  old:0,
+                  new:0
+            }
+            function setImg(index){
+                  let onew=obj.new;
+                  obj.new=index;
+                  obj.old= onew;
+                  
+                  imgli[obj.old].style.zIndex=1;
+                  imgli[obj.new].style.zIndex=2;
+                  
+                  console.log(obj);
+                  
+            } 
+           return setImg;
+      }
+
+
+      //4.实现监听
+//       var fn=SetOtherimg();
+//       document.onclick = function(e){
+//          var e=(e||event);
+//           if (e.target.tagName.toLowerCase()=="span") {
+//              for (let index = 0; index < spanliLength; index++) {
+//                    if(spanli[index].innerHTML==e.target.innerHTML){
+//                         fn(index)
+//                    }
+//               }
+//           }
+//      }
+//      fn(0) //默认选择第一个
+
+
+</script>
